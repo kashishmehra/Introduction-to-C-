@@ -1,0 +1,70 @@
+/*
+Check Permutation
+
+Given two strings, S and T, check if they are permutations of each other. Return true or false.
+Permutation means - length of both the strings should same and should contain same set of characters. Order of characters doesn't matter.
+Note : Input strings contain only lowercase english alphabets.
+
+
+Input format :
+Line 1 : String 1
+Line 2 : String 2
+Output format :
+'true' or 'false'
+Constraints :
+0 <= |S| <= 10^7
+0 <= |T| <= 10^7
+where |S| represents the length of string, S.
+Sample Input 1 :
+abcde
+baedc
+Sample Output 1 :
+true
+Sample Input 2 :
+abc
+cbd
+Sample Output 2 :
+false
+*/
+#include <iostream>
+using namespace std;
+#include<cstring>
+bool isPermutation(char input1[], char input2[]) {
+  	int len1,len2,i,j,count[256]={0},sum=0;
+    len1=strlen(input1);
+    len2=strlen(input2);
+    if(len1==len2)
+    {
+        for(i=0;i<len1;i++)
+        {
+            count[input1[i]]++;
+        }
+        for(i=0;i<len1;i++)
+        {
+            count[input2[i]]--;
+        }
+        for(i=0;i<256;i++)
+        {
+            if(count[i]==0)
+                sum++;
+        }
+        if(sum==256)
+            return true;
+        else return false;
+
+        }
+    return false;
+}
+
+
+int main() {
+    char input1[1000], input2[1000];
+    cin.getline(input1, 1000);
+    cin.getline(input2, 1000);
+    if(isPermutation(input1, input2) == 1) {
+        cout << "true";
+    }
+    else {
+        cout << "false";
+    }
+}
